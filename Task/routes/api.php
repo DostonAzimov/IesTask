@@ -29,5 +29,13 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::get("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'show']);
     Route::put("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'update']);
     Route::delete("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'destroy']);
+
+//    for roles
+    Route::get("/roles",[\App\Http\Controllers\Api\RoleController::class,'index']);
+    Route::get("/role/{id}",[\App\Http\Controllers\Api\RoleController::class,'show']);
+    Route::put("/role/{id}",[\App\Http\Controllers\Api\RoleController::class,'update']);
+    Route::delete("/role/{id}",[\App\Http\Controllers\Api\RoleController::class,'destroy']);
+    Route::post("/role",[\App\Http\Controllers\Api\RoleController::class,'store']);
+
 });
 Route::post("/user",[\App\Http\Controllers\Api\UserController::class,'store']);
