@@ -22,7 +22,7 @@ class AuthController extends Controller
         ]);
 
         $role = new Role();
-        $role->title = '1';
+        $role->title = 'USER';
         $role->save();
 
         $user = new User();
