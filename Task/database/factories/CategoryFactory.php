@@ -15,6 +15,7 @@ class CategoryFactory extends Factory
     {
         return [
             'title'=>$this->faker->text(10),
+            'parent_category_id'=>$this->faker->numberBetween(1,10),
         ];
     }
 }
