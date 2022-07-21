@@ -39,11 +39,11 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::post("/role",[\App\Http\Controllers\Api\RoleController::class,'store']);
 
 //  for products
-    Route::get("/products",[\App\Http\Controllers\Api\ProductController::class,'index']);
-    Route::get("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'show']);
+    Route::get("/products",[\App\Http\Controllers\Api\ProductController::class,'index'])->name('list');
     Route::put("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'update']);
     Route::delete("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'destroy']);
-    Route::post("/product",[\App\Http\Controllers\Api\ProductController::class,'store']);
+    Route::post("/product",[\App\Http\Controllers\Api\ProductController::class,'store'])->name('product');
+    Route::get("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'show']);
 
 //  for Category
     Route::get("/categories",[\App\Http\Controllers\Api\CategoryController::class,'index']);
@@ -53,4 +53,8 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::post("/category",[\App\Http\Controllers\Api\CategoryController::class,'store']);
 
 });
+
+
+
+
 
