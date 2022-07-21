@@ -24,11 +24,12 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
    });
     Route::post("/auth/logout",[\App\Http\Controllers\AuthController::class,'logout']);
 
-// for user
+// for users
     Route::get("/users",[\App\Http\Controllers\Api\UserController::class,'index']);
     Route::get("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'show']);
     Route::put("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'update']);
     Route::delete("/user/{id}",[\App\Http\Controllers\Api\UserController::class,'destroy']);
+    Route::post("/user",[\App\Http\Controllers\Api\UserController::class,'store']);
 
 //    for roles
     Route::get("/roles",[\App\Http\Controllers\Api\RoleController::class,'index']);
@@ -37,5 +38,12 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::delete("/role/{id}",[\App\Http\Controllers\Api\RoleController::class,'destroy']);
     Route::post("/role",[\App\Http\Controllers\Api\RoleController::class,'store']);
 
+//  for products
+    Route::get("/products",[\App\Http\Controllers\Api\ProductController::class,'index']);
+    Route::get("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'show']);
+    Route::put("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'update']);
+    Route::delete("/product/{id}",[\App\Http\Controllers\Api\ProductController::class,'destroy']);
+    Route::post("/product",[\App\Http\Controllers\Api\ProductController::class,'store']);
+
 });
-Route::post("/user",[\App\Http\Controllers\Api\UserController::class,'store']);
+

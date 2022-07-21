@@ -15,8 +15,8 @@ class ProductFactory extends Factory
     {
         return [
             'title'=>$this->faker->text(15),
-            'img'=>$this->faker->text(6).'.jpg',
-            'category_id'=>$this->faker->numberBetween(1,8)
+            'img'=>$this->faker->text(6).'jpg',
+            'category_id'=>$this->faker->numberBetween(1,10)
         ];
     }
 }
