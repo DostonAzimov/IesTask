@@ -18,67 +18,54 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles=Role::all();
-        return RoleResource::collection($roles);
+        return RoleResource::collection(Role::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(RoleRequest $request)
     {
-        $role=new Role();
-        $role->title=$request->title;
-        if ($role->save())
-        {
-            return new RoleResource($role);
-        }
+        return new RoleResource(Role::create($request->validated()));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $role=Role::find($id);
-        return new RoleResource($role);
+        return new RoleResource(Role::find($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, $id)
+    public function update(RoleRequest $request, Role $role)
     {
-        $role=Role::find($id);
-        $role->title=$request->title;
-        if ($role->update())
-        {
-            return new RoleResource($role);
-        }
+        $role->update($request->validated());
+        return new RoleResource($role);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $role=Role::find($id);
-        if ($role->delete())
-        {
-            return new RoleResource($role);
-        }
+            return new RoleResource(Role::find($id));
     }
 }

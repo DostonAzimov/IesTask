@@ -17,8 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
-        return ProductResource::collection($products);
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -29,14 +28,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product=new Product();
-        $product->title=$request->title;
-        $product->img=$request->img;
-        $product->category_id=$request->category_id;
-        if ($product->save())
-        {
-            return new ProductResource($product);
-        }
+            return new ProductResource(Product::create($request->validated()));
     }
 
     /**
@@ -47,8 +39,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product=Product::find($id);
-        return new ProductResource($product);
+        return new ProductResource(Product::find($id));
     }
 
     /**
@@ -58,16 +49,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        $product=Product::find($id);
-        $product->title=$request->title;
-        $product->img=$request->img;
-        $product->category_id=$request->category_id;
-        if ($product->update())
-        {
+            $product->update($request->validated());
             return new ProductResource($product);
-        }
+
     }
 
     /**
@@ -78,10 +64,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product=Product::find($id);
-        if ($product->delete())
-        {
-            return new ProductResource($product);
-        }
+            return new ProductResource(Product::find($id));
+
     }
 }

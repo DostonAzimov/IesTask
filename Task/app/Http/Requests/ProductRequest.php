@@ -25,8 +25,8 @@ class ProductRequest extends FormRequest
     {
         return [
             'title'=>'required|string|max:255',
-            'img'=>'required',
-            'category_id'=>'required|numeric',
+            'img'=>'required|string|max:255',
+            'category_id'=>'exists:App\Models\Category,id|integer',
         ];
     }
 }

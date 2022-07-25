@@ -20,8 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
-        return UserResource::collection($users);
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -56,8 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=User::find($id);
-        return new UserResource($user);
+        return new UserResource(User::find($id));
     }
 
     /**
@@ -67,14 +65,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserPostRequest $request, $id)
+    public function update(UserPostRequest $request, int $id)
     {
         $user=User::find($id);
         $user->name=$request->name;
         $user->email=$request->email;
         $user->password=bcrypt($request->password);
-        $user->update();
-        return new UserResource($user);
+       if ($user->update())
+       {
+           return new UserResource($user);
+       }
     }
 
     /**
@@ -85,8 +85,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
-        $user->delete();
-        return new UserResource($user);
+        return new UserResource(User::find($id));
     }
 }

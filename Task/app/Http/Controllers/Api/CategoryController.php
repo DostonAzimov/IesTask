@@ -29,14 +29,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $category=new Category();
-        $category->title=$request->title;
-        $category->parent_category_id=$request->parent_category_id;
+            return new CategoryResource(Category::create($request->validated()));
 
-        if ($category->save())
-        {
-            return new CategoryResource($category);
-        }
     }
 
     /**
@@ -47,8 +41,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category=Category::find($id);
-        return new CategoryResource($category);
+        return new CategoryResource(Category::find($id));
     }
 
     /**
@@ -58,15 +51,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $category=Category::find($id);
-        $category->title=$request->title;
-        $category->parent_category_id=$request->parent_category_id;
-        if ($category->update())
-        {
+        $category->update($request->validated());
             return new CategoryResource($category);
-        }
+
     }
 
     /**
@@ -77,10 +66,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
-        if ($category->delete())
-        {
-            return new CategoryResource($category);
-        }
+            return new CategoryResource(Category::find($id));
+
     }
 }
