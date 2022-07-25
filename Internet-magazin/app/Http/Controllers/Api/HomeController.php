@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\HomeResource;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\DataSale;
+use App\Models\HomeSlider;
 use App\Models\Product;
 use App\Models\WishList;
 use Illuminate\Http\Request;
@@ -16,35 +19,19 @@ class HomeController extends Controller
 
     public function products()
     {
-        $products = Product::paginate(10);
-        $code = 200;
-        return response()->json([
-            'status' => 'Success',
-            'message' => 'All Products',
-            'products' => $products
-        ], $code);
+        return HomeResource::collection(Product::all());
     }
 
     public function OnSale()
     {
         $product = Product::where('sale_price', '>', 0)->inRandomOrder()->get()->take(12);
-        $code = 200;
-        return response()->json([
-            'status' => 'Success',
-            'message' => 'Sale Products',
-            'SaleProduct' => $product
-        ], $code);
+        return new HomeResource($product);
     }
 
     public function latestProduct()
     {
         $product = Product::orderBy('created_at', 'DESC')->get()->take(10);
-        $code = 200;
-        return response()->json([
-            'status' => 'Success',
-            'message' => 'Latest Products',
-            'SaleProduct' => $product
-        ], $code);
+        return new HomeResource($product);
     }
 
     public function categories()
@@ -62,12 +49,57 @@ class HomeController extends Controller
     {
         $search = '%' . $request->name . '%';
         $product = Product::where('name', 'LIKE', $search)->get();
-        $code = 200;
-        return response()->json([
-            'status' => 'Success',
-            'message' => 'Search Products',
-            'Search Product' => $product
-        ], $code);
+        return new HomeResource($product);
+    }
+
+    public function show($id)
+    {
+        return new HomeResource(Product::find($id));
+    }
+
+    public function relatedProduct($id)
+    {
+        $product=Product::find($id);
+        $products=Product::where('category_id',$product->category_id)->inRandomOrder()->limit(7)->get();
+        return new HomeResource($products);
+    }
+
+    public function popularProduct()
+    {
+        $products=Product::inRandomOrder()->limit(7)->get();
+        return new HomeResource($products);
+    }
+
+    public function mostViewedProduct()
+    {
+        $products=Product::inRandomOrder()->limit(9)->get();
+        return new HomeResource($products);
+    }
+
+    public function productCategory($id)
+    {
+        $product=Product::where('category_id',$id)->inRandomOrder()->limit(9)->get();
+        return new HomeResource($product);
+    }
+
+    public function homeSlider()
+    {
+        return HomeResource::collection(HomeSlider::all());
+    }
+
+    public function showHomeSlider($id)
+    {
+        return new HomeResource(HomeSlider::find($id));
+    }
+
+    public function dateSale()
+    {
+        return HomeResource::collection(DataSale::all());
+    }
+
+    public function showDateSale($id)
+    {
+        return new HomeResource(DataSale::find($id));
     }
 
 

@@ -44,7 +44,16 @@ Route::group(['middleware'=>['auth:sanctum']],function () {
 Route::get('/products',[\App\Http\Controllers\Api\HomeController::class,'products'])->name('products');
 Route::get('/sale',[\App\Http\Controllers\Api\HomeController::class,'OnSale'])->name('sale');
 Route::get('/latestProduct',[\App\Http\Controllers\Api\HomeController::class,'latestProduct'])->name('latestProduct');
+Route::get('/popularProduct',[\App\Http\Controllers\Api\HomeController::class,'popularProduct'])->name('popularProduct');
+Route::get('/mostViewedProduct',[\App\Http\Controllers\Api\HomeController::class,'mostViewedProduct'])->name('mostViewedProduct');
+Route::get('/relatedProduct/{id}',[\App\Http\Controllers\Api\HomeController::class,'relatedProduct'])->name('relatedProduct');
 Route::get('/categories',[\App\Http\Controllers\Api\HomeController::class,'categories'])->name('categories');
+Route::get('/productCategory/{id}',[\App\Http\Controllers\Api\HomeController::class,'productCategory'])->name('productCategory');
 Route::get('/search',[\App\Http\Controllers\Api\HomeController::class,'search'])->name('search');
+Route::get('/product/{id}',[\App\Http\Controllers\Api\HomeController::class,'show'])->name('show');
+Route::get('/homeSlider',[\App\Http\Controllers\Api\HomeController::class,'homeSlider'])->name('homeSlider');
+Route::get('/homeSlider/{id}',[\App\Http\Controllers\Api\HomeController::class,'showHomeSlider'])->name('showHomeSlider');
+Route::get('/dateSale',[\App\Http\Controllers\Api\HomeController::class,'dateSale'])->name('dateSale');
+Route::get('/dateSale/{id}',[\App\Http\Controllers\Api\HomeController::class,'showDateSale'])->name('showDateSale');
 
 
