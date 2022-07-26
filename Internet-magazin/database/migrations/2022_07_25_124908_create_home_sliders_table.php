@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('link');
             $table->string('image');
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->nullable()->default(1);
             $table->timestamps();
         });
     }

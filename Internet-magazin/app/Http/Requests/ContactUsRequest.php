@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HomeSliderRequest extends FormRequest
+class ContactUsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class HomeSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'subtitle' => 'required',
-            'price'=>'required|numeric',
-            'link'=>'required|url',
-            'image'=>'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'comment' => 'required'
         ];
     }
 }

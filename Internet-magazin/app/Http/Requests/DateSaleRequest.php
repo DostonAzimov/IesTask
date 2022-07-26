@@ -13,7 +13,7 @@ class DateSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class DateSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'sale_date'=>'required|date',
         ];
     }
 }

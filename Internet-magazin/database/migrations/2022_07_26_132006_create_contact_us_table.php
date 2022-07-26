@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_sales', function (Blueprint $table) {
+        Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('sale_date');
-            $table->boolean('status')->nullable()->default(1);
+            $table->string('name');
+            $table->string('email');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_sales');
+        Schema::dropIfExists('contact_us');
     }
 };

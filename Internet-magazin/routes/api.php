@@ -50,10 +50,15 @@ Route::get('/relatedProduct/{id}',[\App\Http\Controllers\Api\HomeController::cla
 Route::get('/categories',[\App\Http\Controllers\Api\HomeController::class,'categories'])->name('categories');
 Route::get('/productCategory/{id}',[\App\Http\Controllers\Api\HomeController::class,'productCategory'])->name('productCategory');
 Route::get('/search',[\App\Http\Controllers\Api\HomeController::class,'search'])->name('search');
-Route::get('/product/{id}',[\App\Http\Controllers\Api\HomeController::class,'show'])->name('show');
+Route::get('/product/{id}',[\App\Http\Controllers\Api\HomeController::class,'showProduct'])->name('showProduct');
 Route::get('/homeSlider',[\App\Http\Controllers\Api\HomeController::class,'homeSlider'])->name('homeSlider');
-Route::get('/homeSlider/{id}',[\App\Http\Controllers\Api\HomeController::class,'showHomeSlider'])->name('showHomeSlider');
-Route::get('/dateSale',[\App\Http\Controllers\Api\HomeController::class,'dateSale'])->name('dateSale');
-Route::get('/dateSale/{id}',[\App\Http\Controllers\Api\HomeController::class,'showDateSale'])->name('showDateSale');
+
+Route::apiResources([
+    'dateSale'=>\App\Http\Controllers\Api\Admin\DateSaleController::class,
+    'homeSlider'=>\App\Http\Controllers\Api\Admin\HomeSliderController::class,
+    'product'=>\App\Http\Controllers\Api\Admin\ProductController::class,
+    'category'=>\App\Http\Controllers\Api\Admin\CategoryController::class,
+    'contact_us'=>\App\Http\Controllers\Api\Admin\ContactUsController::class
+]);
 
 

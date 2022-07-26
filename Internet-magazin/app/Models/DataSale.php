@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DataSale extends Model
 {
     use HasFactory;
+
+    protected $table="data_sales";
+
+    protected $fillable=['sale_date','status'];
 }

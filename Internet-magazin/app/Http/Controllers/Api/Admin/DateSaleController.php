@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DateSaleRequest;
+use App\Http\Resources\DateSaleResource;
+use App\Http\Resources\HomeResource;
+use App\Models\DataSale;
 use Illuminate\Http\Request;
 
-class HomeSlider extends Controller
+class DateSaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,7 @@ class HomeSlider extends Controller
      */
     public function index()
     {
-        //
+        return DateSaleResource::collection(DataSale::all());
     }
 
     /**
@@ -23,9 +27,9 @@ class HomeSlider extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DateSaleRequest $request)
     {
-        //
+        return new DateSaleResource(DataSale::create($request->validated()));
     }
 
     /**
@@ -36,7 +40,7 @@ class HomeSlider extends Controller
      */
     public function show($id)
     {
-        //
+        return new DateSaleResource(DataSale::find($id));
     }
 
     /**
@@ -48,7 +52,12 @@ class HomeSlider extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'sale_date'=>'required|date'
+        ]);
+        $dataSale=DataSale::find($id);
+        $dataSale->update($request->all());
+        return new DateSaleResource($dataSale);
     }
 
     /**
@@ -59,6 +68,11 @@ class HomeSlider extends Controller
      */
     public function destroy($id)
     {
-        //
+        $date_sale=DataSale::find($id);
+        $date_sale->delete();
+        return response()->json([
+            'status'=>'success',
+            'message'=>'Deleted successfully!'
+        ]);
     }
 }

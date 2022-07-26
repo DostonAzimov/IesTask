@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HomeSlider extends Model
+class ContactUs extends Model
 {
     use HasFactory;
 
-    protected $table="home_sliders";
+    protected $table="contact_us";
 
-    protected $fillable=['title','subtitle','price','link','image','status'];
+    protected $fillable=['name','email','comment'];
 }

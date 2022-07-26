@@ -52,7 +52,7 @@ class HomeController extends Controller
         return new HomeResource($product);
     }
 
-    public function show($id)
+    public function showProduct($id)
     {
         return new HomeResource(Product::find($id));
     }
@@ -87,20 +87,7 @@ class HomeController extends Controller
         return HomeResource::collection(HomeSlider::all());
     }
 
-    public function showHomeSlider($id)
-    {
-        return new HomeResource(HomeSlider::find($id));
-    }
 
-    public function dateSale()
-    {
-        return HomeResource::collection(DataSale::all());
-    }
-
-    public function showDateSale($id)
-    {
-        return new HomeResource(DataSale::find($id));
-    }
 
 
 

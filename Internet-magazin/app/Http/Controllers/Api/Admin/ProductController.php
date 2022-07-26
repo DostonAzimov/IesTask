@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class DateSaleController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,7 @@ class DateSaleController extends Controller
      */
     public function index()
     {
-        //
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -23,9 +26,9 @@ class DateSaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        return new ProductResource(Product::create($request->all()));
     }
 
     /**
@@ -36,7 +39,7 @@ class DateSaleController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProductResource(Product::find($id));
     }
 
     /**
@@ -46,9 +49,11 @@ class DateSaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $product=Product::find($id);
+        $product->update($request->all());
+        return new ProductResource($product);
     }
 
     /**
@@ -59,6 +64,11 @@ class DateSaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::find($id);
+        $product->delete();
+        return response()->json([
+            'status'=>'success',
+            'message'=>'Deleted successfully!'
+        ]);
     }
 }
