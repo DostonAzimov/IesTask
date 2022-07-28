@@ -27,7 +27,7 @@ Route::apiResources([
     'missiya'=>\App\Http\Controllers\Api\JamiyatHaqida\MissiyaController::class,
     'company'=>\App\Http\Controllers\Api\JamiyatHaqida\CompaniesController::class,
     'contactUs'=>\App\Http\Controllers\Api\JamiyatHaqida\ContactUsController::class,
-    'vertual'=>\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class
-
-
+    'vertual'=>\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,
+    'vertualQabulxona'=>\App\Http\Controllers\Api\Faoliyat\VirtualQabulxonaController::class
 ]);
+Route::get('/search',[\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,'search']);

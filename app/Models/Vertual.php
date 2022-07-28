@@ -12,5 +12,5 @@ class Vertual extends Model
     protected $table='vertuals';
 
     protected $fillable=['fullName','dateOfBirth','passport','region',
-        'district','address','email','secret','phoneNumber'];
+        'district','address','email','secret','phoneNumber','status'];
 }

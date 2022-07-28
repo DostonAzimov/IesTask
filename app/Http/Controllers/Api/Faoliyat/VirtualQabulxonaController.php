@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\JamiyatHaqida;
+namespace App\Http\Controllers\Api\Faoliyat;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\VertualRequest;
-use App\Http\Resources\VertualResource;
-use App\Models\Vertual;
+use App\Http\Requests\VirtualQabulxonaRequest;
+use App\Http\Resources\VirtualQabulxonaResource;
+use App\Models\VertualQabulxona;
 use Illuminate\Http\Request;
 
-class VirtualController extends Controller
+class VirtualQabulxonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class VirtualController extends Controller
      */
     public function index()
     {
-        return VertualResource::collection(Vertual::all());
+        return VirtualQabulxonaResource::collection(VertualQabulxona::all());
     }
 
     /**
@@ -26,9 +26,9 @@ class VirtualController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VertualRequest $request)
+    public function store(VirtualQabulxonaRequest $request)
     {
-        return new VertualResource(Vertual::create($request->validated()));
+        return new VirtualQabulxonaResource(VertualQabulxona::create($request->validated()));
     }
 
     /**
@@ -39,7 +39,7 @@ class VirtualController extends Controller
      */
     public function show($id)
     {
-        return new VertualResource(Vertual::find($id));
+        return new VirtualQabulxonaResource(VertualQabulxona::find($id));
     }
 
     /**
@@ -49,11 +49,11 @@ class VirtualController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VertualRequest $request, $id)
+    public function update(VirtualQabulxonaRequest $request, $id)
     {
-        $vertual=Vertual::find($id);
+        $vertual=VertualQabulxona::find($id);
         $vertual->update($request->validated());
-        return new VertualResource($vertual);
+        return new VirtualQabulxonaResource($vertual);
     }
 
     /**
@@ -64,18 +64,11 @@ class VirtualController extends Controller
      */
     public function destroy($id)
     {
-        $vertual=Vertual::find($id);
+        $vertual=VertualQabulxona::find($id);
         $vertual->delete();
         return response()->json([
             'status'=>'Success',
             'message'=>'Deleted successfully'
         ]);
     }
-
-    public function search(Request $request)
-    {
-        $search = Vertual::where('passport', 'LIKE',  '%' . $request->passport . '%')->get();
-        return new VertualResource($search);
-    }
-
 }

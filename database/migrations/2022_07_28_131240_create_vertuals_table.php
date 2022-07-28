@@ -24,6 +24,7 @@ class CreateVertualsTable extends Migration
             $table->string('email');
             $table->boolean('secret')->nullable()->default(true);
             $table->string('phoneNumber');
+            $table->string('status')->nullable()->default('0');
 
             $table->timestamps();
         });
