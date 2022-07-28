@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResources([
     'homeSlider'=>\App\Http\Controllers\Api\HomeSliderController::class,
-    'iesAj'=>\App\Http\Controllers\Api\JamiyatHaqida\IesAjController::class
+    'iesAj'=>\App\Http\Controllers\Api\JamiyatHaqida\IesAjController::class,
+    'rivStrategiyasi'=>\App\Http\Controllers\Api\JamiyatHaqida\RivStrategiyasiController::class
 ]);

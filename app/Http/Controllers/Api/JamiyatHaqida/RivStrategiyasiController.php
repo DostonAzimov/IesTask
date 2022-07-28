@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\JamiyatHaqida;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\IesAjRequest;
+use App\Http\Requests\RivStrategiyasiRequest;
 use App\Http\Resources\IesAjResource;
-use App\Models\HomeSlider;
+use App\Http\Resources\RivStrategiyasiResource;
 use App\Models\IesAj;
+use App\Models\RivojlanishStrategiyasi;
 use Illuminate\Http\Request;
 
-class IesAjController extends Controller
+class RivStrategiyasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class IesAjController extends Controller
      */
     public function index()
     {
-        return  IesAjResource::collection(IesAj::all());
+        return RivStrategiyasiResource::collection(RivojlanishStrategiyasi::all());
     }
 
     /**
@@ -27,23 +28,22 @@ class IesAjController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RivStrategiyasiRequest $request)
     {
-        $iesAj=new IesAj();
-        $iesAj->description=$request->description;
-            $imagesName='';
-            foreach ($request->images as $image)
-            {
+        $rivStr=new RivojlanishStrategiyasi();
+        $rivStr->description=$request->description;
+        $imagesName='';
+        foreach ($request->images as $image)
+        {
 
-                $imgName = $image->getClientOriginalName();
-                $image->storeAs('IesAj', $imgName);
-                $imagesName = $imagesName . ',' . $imgName;
-            }
-        $iesAj->file=$request->file;
-            $iesAj->save();
-        return new IesAjResource($iesAj);
+            $imgName = $image->getClientOriginalName();
+            $image->storeAs('IesAj', $imgName);
+            $imagesName = $imagesName . ',' . $imgName;
         }
-
+        $rivStr->file=$request->file;
+        $rivStr->save();
+        return new IesAjResource($rivStr);
+    }
 
     /**
      * Display the specified resource.
@@ -53,7 +53,7 @@ class IesAjController extends Controller
      */
     public function show($id)
     {
-        return new IesAjResource(IesAj::find($id));
+        return new RivStrategiyasiResource(RivojlanishStrategiyasi::find($id));
     }
 
     /**
@@ -63,10 +63,10 @@ class IesAjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IesAjRequest $request, $id)
+    public function update(RivStrategiyasiRequest $request, $id)
     {
-        $iesAj=IesAj::find($id);
-        $iesAj->description=$request->description;
+        $rivStr=RivojlanishStrategiyasi::find($id);
+        $rivStr->description=$request->description;
         if ($request->newImages) {
             $imagesName = '';
             foreach ($request->newImages as $image) {
@@ -76,8 +76,9 @@ class IesAjController extends Controller
                 $imagesName = $imagesName . ',' . $imgName;
             }
         }
-        $iesAj->save();
-        return new IesAjResource($iesAj);
+        $rivStr->file=$request->file;
+        $rivStr->save();
+        return new IesAjResource($rivStr);
     }
 
     /**
@@ -88,8 +89,8 @@ class IesAjController extends Controller
      */
     public function destroy($id)
     {
-        $iesAj=IesAj::find($id);
-        $iesAj->delete();
+        $rivStr=RivojlanishStrategiyasi::find($id);
+        $rivStr->delete();
         return response()->json([
             'status'=>'Success',
             'message'=>'Deleted successfully'

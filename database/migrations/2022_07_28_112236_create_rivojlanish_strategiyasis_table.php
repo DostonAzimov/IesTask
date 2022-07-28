@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIesAjsTable extends Migration
+class CreateRivojlanishStrategiyasisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIesAjsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ies_ajs', function (Blueprint $table) {
+        Schema::create('rivojlanish_strategiyasis', function (Blueprint $table) {
             $table->id();
             $table->text('description');
             $table->string('images')->nullable();
@@ -29,6 +29,6 @@ class CreateIesAjsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ies_ajs');
+        Schema::dropIfExists('rivojlanish_strategiyasis');
     }
 }
