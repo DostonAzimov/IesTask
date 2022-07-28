@@ -28,7 +28,16 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      */
     public function store(YoshlarIttifoqiYetakchisiRequest $request)
     {
-        return new YoshlarIttifoqiYetakchisiResource(YoshlarIttifoqiYetakchisi::create($request->validated()));
+        $yiy=new YoshlarIttifoqiYetakchisi();
+        $yiy->fullName=$request->fullName;
+        $yiy->title=$request->title;
+        $yiy->description=$request->description;
+        $yiy->phoneNumber=$request->phoneNumber;
+        $imageName = $request->image->getClientOriginalName();
+        $this->image->storeAs('YIY', $imageName);
+        $yiy->image = $imageName;
+        $yiy->save();
+        return new YoshlarIttifoqiYetakchisiResource($yiy);
     }
 
     /**
@@ -51,9 +60,20 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      */
     public function update(YoshlarIttifoqiYetakchisiRequest $request, $id)
     {
-        $yit=YoshlarIttifoqiYetakchisi::find($id);
-        $yit->update($request->validated());
-        return new YoshlarIttifoqiYetakchisiResource($yit);
+        $yiy=YoshlarIttifoqiYetakchisi::find($id);
+        $yiy->fullName=$request->fullName;
+        $yiy->title=$request->title;
+        $yiy->description=$request->description;
+        $yiy->phoneNumber=$request->phoneNumber;
+        if ($this->newImage) {
+            unlink('assets/images/foods' . '/' . $yiy->image);
+            $imageName = $request->newImage->getClientOriginalName();
+            $this->newImage->storeAs('foods', $imageName);
+            $yiy->image = $imageName;
+        }
+        $yiy->image = $imageName;
+        $yiy->update();
+        return new YoshlarIttifoqiYetakchisiResource($yiy);
     }
 
     /**

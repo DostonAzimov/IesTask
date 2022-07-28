@@ -27,7 +27,7 @@ class YoshlarIttifoqiYetakchisiRequest extends FormRequest
             'title'=>'required|string|max:255',
             'fullName'=>'required|string|max:255',
             'phoneNumber'=>'required|numeric',
-            'email'=>'required|email',
+            'image'=>'required',
             'description'=>'required|string|max:255',
         ];
     }
