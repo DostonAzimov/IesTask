@@ -25,7 +25,8 @@ Route::apiResources([
     'admission'=>\App\Http\Controllers\Api\JamiyatHaqida\AdmissionController::class,
     'transformaciya'=>\App\Http\Controllers\Api\JamiyatHaqida\TransformaciyaController::class,
     'missiya'=>\App\Http\Controllers\Api\JamiyatHaqida\MissiyaController::class,
-    'company'=>\App\Http\Controllers\Api\JamiyatHaqida\CompaniesController::class
+    'company'=>\App\Http\Controllers\Api\JamiyatHaqida\CompaniesController::class,
+    'contactUs'=>\App\Http\Controllers\Api\JamiyatHaqida\ContactUsController::class
 
 
 ]);
