@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransformaciyasTable extends Migration
+class CreateMissiyasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransformaciyasTable extends Migration
      */
     public function up()
     {
-        Schema::create('transformaciyas', function (Blueprint $table) {
+        Schema::create('missiyas', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description');
@@ -30,6 +30,6 @@ class CreateTransformaciyasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transformaciyas');
+        Schema::dropIfExists('missiyas');
     }
 }

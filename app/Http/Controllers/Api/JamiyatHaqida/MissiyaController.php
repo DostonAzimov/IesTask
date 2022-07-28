@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\JamiyatHaqida;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\IesAjRequest;
+use App\Http\Requests\MissiyaRequest;
 use App\Http\Resources\IesAjResource;
-use App\Models\HomeSlider;
+use App\Http\Resources\MissiyaResource;
 use App\Models\IesAj;
+use App\Models\Missiya;
 use Illuminate\Http\Request;
 
-class IesAjController extends Controller
+class MissiyaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class IesAjController extends Controller
      */
     public function index()
     {
-        return  IesAjResource::collection(IesAj::all());
+       return MissiyaResource::collection(Missiya::all());
     }
 
     /**
@@ -27,24 +28,23 @@ class IesAjController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MissiyaRequest $request)
     {
-        $iesAj=new IesAj();
-        $iesAj->title=$request->title;
-        $iesAj->description=$request->description;
-            $imagesName='';
-            foreach ($request->images as $image)
-            {
+        $missiya=new Missiya();
+        $missiya->title=$request->title;
+        $missiya->description=$request->description;
+        $imagesName='';
+        foreach ($request->images as $image)
+        {
 
-                $imgName = $image->getClientOriginalName();
-                $image->storeAs('IesAj', $imgName);
-                $imagesName = $imagesName . ',' . $imgName;
-            }
-        $iesAj->file=$request->file;
-            $iesAj->save();
-        return new IesAjResource($iesAj);
+            $imgName = $image->getClientOriginalName();
+            $image->storeAs('Missiya', $imgName);
+            $imagesName = $imagesName . ',' . $imgName;
         }
-
+        $missiya->file=$request->file;
+        $missiya->save();
+        return new MissiyaResource($missiya);
+    }
 
     /**
      * Display the specified resource.
@@ -54,7 +54,7 @@ class IesAjController extends Controller
      */
     public function show($id)
     {
-        return new IesAjResource(IesAj::find($id));
+        return new MissiyaResource(Missiya::find($id));
     }
 
     /**
@@ -64,23 +64,23 @@ class IesAjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IesAjRequest $request, $id)
+    public function update(MissiyaRequest $request, $id)
     {
-        $iesAj=IesAj::find($id);
-        $iesAj->title=$request->title;
-        $iesAj->description=$request->description;
+        $missiya=Missiya::find($id);
+        $missiya->title=$request->title;
+        $missiya->description=$request->description;
         if ($request->newImages) {
             $imagesName = '';
             foreach ($request->newImages as $image) {
 
                 $imgName = $image->getClientOriginalName();
-                $image->storeAs('IesAj', $imgName);
+                $image->storeAs('Missiya', $imgName);
                 $imagesName = $imagesName . ',' . $imgName;
             }
         }
-        $iesAj->file=$request->file;
-        $iesAj->save();
-        return new IesAjResource($iesAj);
+        $missiya->file=$request->file;
+        $missiya->save();
+        return new MissiyaResource($missiya);
     }
 
     /**
@@ -91,8 +91,8 @@ class IesAjController extends Controller
      */
     public function destroy($id)
     {
-        $iesAj=IesAj::find($id);
-        $iesAj->delete();
+        $missiya=Missiya::find($id);
+        $missiya->delete();
         return response()->json([
             'status'=>'Success',
             'message'=>'Deleted successfully'

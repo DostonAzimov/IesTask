@@ -11,5 +11,5 @@ class RivojlanishStrategiyasi extends Model
 
     protected $table="rivojlanish_strategiyasis";
 
-    protected $fillable=['description','images','file'];
+    protected $fillable=['title','description','images','file'];
 }

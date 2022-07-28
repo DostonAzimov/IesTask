@@ -11,5 +11,5 @@ class IesAj extends Model
 
     protected $table="ies_ajs";
 
-    protected $fillable=['description','images'];
+    protected $fillable=['title','description','images','file'];
 }

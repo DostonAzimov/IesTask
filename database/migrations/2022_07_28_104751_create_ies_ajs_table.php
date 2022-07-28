@@ -15,6 +15,7 @@ class CreateIesAjsTable extends Migration
     {
         Schema::create('ies_ajs', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->text('description');
             $table->string('images')->nullable();
             $table->string('file')->nullable();

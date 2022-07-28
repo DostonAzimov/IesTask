@@ -31,13 +31,14 @@ class TransformaciyaController extends Controller
     public function store(TransformaciyaRequest $request)
     {
         $transformatsiya=new Transformaciya();
+        $transformatsiya->title=$request->title;
         $transformatsiya->description=$request->description;
         $imagesName='';
         foreach ($request->images as $image)
         {
 
             $imgName = $image->getClientOriginalName();
-            $image->storeAs('IesAj', $imgName);
+            $image->storeAs('Transformatsiya', $imgName);
             $imagesName = $imagesName . ',' . $imgName;
         }
         $transformatsiya->file=$request->file;
@@ -66,13 +67,14 @@ class TransformaciyaController extends Controller
     public function update(TransformaciyaRequest $request, $id)
     {
         $transformatsiya=TransformaciyaRequest::find($id);
+        $transformatsiya->title=$request->title;
         $transformatsiya->description=$request->description;
         if ($request->newImages) {
             $imagesName = '';
             foreach ($request->newImages as $image) {
 
                 $imgName = $image->getClientOriginalName();
-                $image->storeAs('IesAj', $imgName);
+                $image->storeAs('Transformatsiya', $imgName);
                 $imagesName = $imagesName . ',' . $imgName;
             }
         }

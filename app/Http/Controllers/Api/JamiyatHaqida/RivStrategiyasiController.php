@@ -31,13 +31,14 @@ class RivStrategiyasiController extends Controller
     public function store(RivStrategiyasiRequest $request)
     {
         $rivStr=new RivojlanishStrategiyasi();
+        $rivStr->title=$request->title;
         $rivStr->description=$request->description;
         $imagesName='';
         foreach ($request->images as $image)
         {
 
             $imgName = $image->getClientOriginalName();
-            $image->storeAs('IesAj', $imgName);
+            $image->storeAs('RivStr', $imgName);
             $imagesName = $imagesName . ',' . $imgName;
         }
         $rivStr->file=$request->file;
@@ -66,13 +67,14 @@ class RivStrategiyasiController extends Controller
     public function update(RivStrategiyasiRequest $request, $id)
     {
         $rivStr=RivojlanishStrategiyasi::find($id);
+        $rivStr->title=$request->title;
         $rivStr->description=$request->description;
         if ($request->newImages) {
             $imagesName = '';
             foreach ($request->newImages as $image) {
 
                 $imgName = $image->getClientOriginalName();
-                $image->storeAs('IesAj', $imgName);
+                $image->storeAs('RivStr', $imgName);
                 $imagesName = $imagesName . ',' . $imgName;
             }
         }

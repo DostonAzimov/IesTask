@@ -15,6 +15,7 @@ class CreateRivojlanishStrategiyasisTable extends Migration
     {
         Schema::create('rivojlanish_strategiyasis', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->text('description');
             $table->string('images')->nullable();
             $table->string('file')->nullable();
