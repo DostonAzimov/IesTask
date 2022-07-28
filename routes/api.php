@@ -24,7 +24,8 @@ Route::apiResources([
     'rivStrategiyasi'=>\App\Http\Controllers\Api\JamiyatHaqida\RivStrategiyasiController::class,
     'admission'=>\App\Http\Controllers\Api\JamiyatHaqida\AdmissionController::class,
     'transformaciya'=>\App\Http\Controllers\Api\JamiyatHaqida\TransformaciyaController::class,
-    'missiya'=>\App\Http\Controllers\Api\JamiyatHaqida\MissiyaController::class
+    'missiya'=>\App\Http\Controllers\Api\JamiyatHaqida\MissiyaController::class,
+    'company'=>\App\Http\Controllers\Api\JamiyatHaqida\CompaniesController::class
 
 
 ]);
