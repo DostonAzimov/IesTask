@@ -23,5 +23,7 @@ Route::apiResources([
     'iesAj'=>\App\Http\Controllers\Api\JamiyatHaqida\IesAjController::class,
     'rivStrategiyasi'=>\App\Http\Controllers\Api\JamiyatHaqida\RivStrategiyasiController::class,
     'admission'=>\App\Http\Controllers\Api\JamiyatHaqida\AdmissionController::class,
+    'transformaciya'=>\App\Http\Controllers\Api\JamiyatHaqida\TransformaciyaController::class,
+
 
 ]);
