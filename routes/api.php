@@ -30,6 +30,8 @@ Route::apiResources([
     'vertual'=>\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,
     'vertualQabulxona'=>\App\Http\Controllers\Api\Faoliyat\VirtualQabulxonaController::class,
     'document'=>\App\Http\Controllers\Api\Faoliyat\DocumentController::class,
-    'yoshlarIttifoqiYetakchisi'=>\App\Http\Controllers\Api\Faoliyat\YoshlarIttifoqiYetakchisiController::class
+    'yoshlarIttifoqiYetakchisi'=>\App\Http\Controllers\Api\Faoliyat\YoshlarIttifoqiYetakchisiController::class,
+    'xotinQizlarRaisi'=>\App\Http\Controllers\Api\Faoliyat\XotinQizlarRaisiController::class,
+    'internationalRelations'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InternationalRelationsController::class
 ]);
 Route::get('/search',[\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,'search']);
