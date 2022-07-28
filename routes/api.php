@@ -32,6 +32,7 @@ Route::apiResources([
     'document'=>\App\Http\Controllers\Api\Faoliyat\DocumentController::class,
     'yoshlarIttifoqiYetakchisi'=>\App\Http\Controllers\Api\Faoliyat\YoshlarIttifoqiYetakchisiController::class,
     'xotinQizlarRaisi'=>\App\Http\Controllers\Api\Faoliyat\XotinQizlarRaisiController::class,
-    'internationalRelations'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InternationalRelationsController::class
+    'internationalRelations'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InternationalRelationsController::class,
+    'investment'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InvestmentController::class
 ]);
 Route::get('/search',[\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,'search']);
