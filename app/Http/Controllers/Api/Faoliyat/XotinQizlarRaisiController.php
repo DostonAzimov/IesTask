@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\Faoliyat;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\YoshlarIttifoqiYetakchisiRequest;
+use App\Http\Requests\XotinQizlarRaisiRequest;
+use App\Http\Resources\XotinQizlarRaisiResource;
 use App\Http\Resources\YoshlarIttifoqiYetakchisiResource;
+use App\Models\XotinQizlarRaisi;
 use App\Models\YoshlarIttifoqiYetakchisi;
 use Illuminate\Http\Request;
 
-class YoshlarIttifoqiYetakchisiController extends Controller
+class XotinQizlarRaisiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +19,7 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      */
     public function index()
     {
-       return YoshlarIttifoqiYetakchisiResource::collection(YoshlarIttifoqiYetakchisi::all());
+        return XotinQizlarRaisiResource::collection(XotinQizlarRaisi::all());
     }
 
     /**
@@ -26,18 +28,18 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(YoshlarIttifoqiYetakchisiRequest $request)
+    public function store(XotinQizlarRaisiRequest $request)
     {
-        $yiy=new YoshlarIttifoqiYetakchisi();
-        $yiy->fullName=$request->fullName;
-        $yiy->title=$request->title;
-        $yiy->description=$request->description;
-        $yiy->phoneNumber=$request->phoneNumber;
+        $xqr=new XotinQizlarRaisi();
+        $xqr->fullName=$request->fullName;
+        $xqr->title=$request->title;
+        $xqr->description=$request->description;
+        $xqr->phoneNumber=$request->phoneNumber;
         $imageName = $request->image->getClientOriginalName();
-        $this->image->storeAs('YIY', $imageName);
-        $yiy->image = $imageName;
-        $yiy->save();
-        return new YoshlarIttifoqiYetakchisiResource($yiy);
+        $this->image->storeAs('XQR', $imageName);
+        $xqr->image = $imageName;
+        $xqr->save();
+        return new XotinQizlarRaisiResource($xqr);
     }
 
     /**
@@ -48,7 +50,7 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      */
     public function show($id)
     {
-        return new YoshlarIttifoqiYetakchisiResource(YoshlarIttifoqiYetakchisi::find($id));
+        return new XotinQizlarRaisiResource(XotinQizlarRaisi::find($id));
     }
 
     /**
@@ -58,21 +60,21 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(YoshlarIttifoqiYetakchisiRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $yiy=YoshlarIttifoqiYetakchisi::find($id);
-        $yiy->fullName=$request->fullName;
-        $yiy->title=$request->title;
-        $yiy->description=$request->description;
-        $yiy->phoneNumber=$request->phoneNumber;
+        $xqr=XotinQizlarRaisi::find($id);
+        $xqr->fullName=$request->fullName;
+        $xqr->title=$request->title;
+        $xqr->description=$request->description;
+        $xqr->phoneNumber=$request->phoneNumber;
         if ($this->newImage) {
             $imageName = $request->newImage->getClientOriginalName();
             $this->newImage->storeAs('foods', $imageName);
-            $yiy->image = $imageName;
+            $xqr->image = $imageName;
         }
-        $yiy->image = $imageName;
-        $yiy->update();
-        return new YoshlarIttifoqiYetakchisiResource($yiy);
+        $xqr->image = $imageName;
+        $xqr->update();
+        return new YoshlarIttifoqiYetakchisiResource($xqr);
     }
 
     /**
@@ -83,8 +85,8 @@ class YoshlarIttifoqiYetakchisiController extends Controller
      */
     public function destroy($id)
     {
-        $yit=YoshlarIttifoqiYetakchisi::find($id);
-        $yit->delete();
+        $xqr=XotinQizlarRaisi::find($id);
+        $xqr->delete();
         return response()->json([
             'status'=>'Success',
             'message'=>'Deleted successfully'
