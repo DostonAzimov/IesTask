@@ -35,6 +35,7 @@ Route::apiResources([
     'internationalRelations'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InternationalRelationsController::class,
     'investment'=>\App\Http\Controllers\Api\InvestitsiyaSiyosati\InvestmentController::class,
     'ustav'=>\App\Http\Controllers\Api\KorporativBoshqaruv\UstavController::class,
-    'supervisoryBoard'=>\App\Http\Controllers\Api\KorporativBoshqaruv\SupervisoryBoardController::class
+    'supervisoryBoard'=>\App\Http\Controllers\Api\KorporativBoshqaruv\SupervisoryBoardController::class,
+    'audit'=>\App\Http\Controllers\Api\KorporativBoshqaruv\AuditController::class
 ]);
 Route::get('/search',[\App\Http\Controllers\Api\JamiyatHaqida\VirtualController::class,'search']);
